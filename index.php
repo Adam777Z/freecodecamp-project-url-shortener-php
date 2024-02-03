@@ -17,8 +17,9 @@ if ( isset( $_SERVER['PATH_INFO'] ) ) {
 
 		if ( isset( $_POST['url'] ) && ! empty( $_POST['url'] ) ) {
 			$url = trim( $_POST['url'] );
+			$parsed_url = parse_url( $url );
 
-			if ( preg_match( '/^https?:\/\//', $url ) && filter_var( $url, FILTER_VALIDATE_URL ) ) {
+			if ( isset( $parsed_url['scheme'] ) && in_array( $parsed_url['scheme'], ['http', 'https'] ) && filter_var( $url, FILTER_VALIDATE_URL ) ) {
 				$original_url = $url;
 				$short_url = find_short_url( $original_url );
 
