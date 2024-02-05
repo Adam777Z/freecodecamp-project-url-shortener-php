@@ -82,7 +82,7 @@ function find_short_url( $original_url ) {
 	global $db;
 
 	$query = $db->query( "SELECT short_url FROM urls WHERE original_url = {$db->quote( $original_url )}" );
-	$result = $query->fetchAll();
+	$result = $query->fetchAll( PDO::FETCH_ASSOC );
 
 	return $result ? $result[0]['short_url'] : false;
 }
@@ -91,7 +91,7 @@ function find_original_url( $short_url ) {
 	global $db;
 
 	$query = $db->query( "SELECT original_url FROM urls WHERE short_url = {$db->quote( $short_url )}" );
-	$result = $query->fetchAll();
+	$result = $query->fetchAll( PDO::FETCH_ASSOC );
 
 	return $result ? $result[0]['original_url'] : false;
 }
