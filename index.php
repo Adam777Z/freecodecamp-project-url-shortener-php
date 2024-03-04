@@ -52,7 +52,7 @@ if ( isset( $_SERVER['PATH_INFO'] ) ) {
 			$original_url = find_original_url( $short_url );
 
 			if ( $original_url ) {
-				header( 'Location: ' . $original_url );
+				header( "Location: $original_url" );
 				exit;
 			} else {
 				header( 'Content-Type: application/json; charset=utf-8' );
@@ -74,7 +74,7 @@ function redirect_to_index() {
 		$path_prefix = './';
 	}
 
-	header( 'Location: ' . $path_prefix );
+	header( "Location: $path_prefix" );
 	exit;
 }
 
